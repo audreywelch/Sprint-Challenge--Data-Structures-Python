@@ -22,6 +22,14 @@ f.close()
 # print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 # print (f"runtime: {end_time - start_time} seconds") ## 12.1007 seconds
 
+"""
+PLAN:
+-> Less Loops
+    - "You might try importing a data structure you built during the week"
+        .. Queue = this has a contains() method, so I would be traveling throughout a linked list, while checking if the value of the current node I'm at, is the value I'm looking for / a duplicate. Then update the `current` to be the next one in the list.
+            >> Hmm, I'm pretty sure this would still be nested though.
+
+"""
 
 ## Runtime: O(n + m)
 
@@ -39,4 +47,4 @@ for each_name in names_2:
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime second approach: {end_time - start_time} seconds") ## 0.0099 seconds
+print (f"runtime optimized approach: {end_time - start_time} seconds") ## 0.0099 seconds
