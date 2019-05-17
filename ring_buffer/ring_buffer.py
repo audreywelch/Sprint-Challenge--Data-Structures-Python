@@ -3,18 +3,11 @@ class RingBuffer:
   def __init__(self, capacity):
     # User-entered length of list
     self.capacity = capacity
-
-    # points to the space in memory
+    # Index of the current_oldest
     self.current = 0
-
     self.storage = [None]*capacity
 
-  def __str__(self):
-    return f'{self.storage}'
-
   def append(self, item):
-    
-    # if storage is all None -> this would allow us to assign the first element added as the curent oldest. But actually, we don't need to remove anything (using the current index which is already set to 0) until the array is at capacity. And if we are appending to the back of the array 
 
     # Replace the item at the index of the current_oldest with new item
     self.storage[self.current] = item
@@ -27,21 +20,10 @@ class RingBuffer:
       self.current += 1
 
   def get(self):
-    # for each_item in self.storage:
-        # if each_item is not None:
-          # print(each_item)
-    for each_item in self.storage:
-      if each_item is not None:
-        print(each_item)
+    ring = [x for x in self.storage if x is not None]
+    print(ring)
+    return ring
 
-new_ring = RingBuffer(5)
-print(new_ring)
-new_ring.append(4)
-new_ring.append(3)
-new_ring.append(2)
-new_ring.append(1)
-new_ring.get()
-print(new_ring)
 
 
 """
@@ -75,6 +57,27 @@ class RingBuffer:
   - In the starter code, `storage` is [None] * capacity, so the array will always hold 5 items, and I can't make the storage be of the LinkedList class
   - In the example outputs, the array must return the newest item replacing not only the oldest item, but also the same place that the oldest item was in. That makes no sense. How will I know the age of an item ??
 
+Whoa whoa whoa
+A b c
+d -> B c (next_node)
+d e -> C (next_node)
+-> D e f
 
+[NONE, none, none]
+[a, NONE, none]
+[a, b, NONE]
+[A, b, c]
+[d, E, c]
+
+## I get it now.
+
+TESTS
+new_ring = RingBuffer(5)
+new_ring.append('a')
+new_ring.append('b')
+new_ring.append('c')
+new_ring.append('d')
+#new_ring.append('e')
+new_ring.get()
 
 """
