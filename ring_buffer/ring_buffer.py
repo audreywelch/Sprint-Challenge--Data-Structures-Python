@@ -20,9 +20,7 @@ class RingBuffer:
       self.current += 1
 
   def get(self):
-    ring = [x for x in self.storage if x is not None]
-    print(ring)
-    return ring
+    return [x for x in self.storage if x is not None]
 
 
 
