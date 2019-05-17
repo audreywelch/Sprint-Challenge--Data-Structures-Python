@@ -13,10 +13,18 @@ class RingBuffer:
     return f'{self.storage}'
 
   def append(self, item):
-    self.storage.remove(self.storage[0])
+    
+    # if storage is all None -> this would allow us to assign the first element added as the curent oldest. But actually, we don't need to remove anything (using the current index which is already set to 0) until the array is at capacity. And if we are appending to the back of the array 
 
-    #if len(self.storage) 
-    self.storage.append(item)
+    # Replace the item at the index of the current_oldest with new item
+    self.storage[self.current] = item
+
+    # Move the current_oldest to the next in the array
+    ## If at the end of the array, the current_oldest is at the beginning of the array
+    if self.current == (len(self.storage) - 1):
+      self.current = 0
+    else:
+      self.current += 1
 
   def get(self):
     # for each_item in self.storage:
